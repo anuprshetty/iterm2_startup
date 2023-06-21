@@ -1,0 +1,93 @@
+{
+  "window": {
+    "name": "You got a dream... You gotta protect it!",
+    "tabs": [
+      {
+        "name": "Rough Space",
+        "panes": [
+          {
+            "name": "RS_1",
+            "is_vertical": false,
+            "commands": ["cd $HOME && clear"]
+          },
+          {
+            "name": "RS_2",
+            "is_vertical": false,
+            "commands": ["cd $HOME && clear"]
+          },
+          {
+            "name": "RS_3",
+            "is_vertical": true,
+            "commands": ["cd $HOME && clear"]
+          },
+          {
+            "name": "RS_4",
+            "is_vertical": true,
+            "commands": ["cd $HOME && clear"]
+          }
+        ]
+      },
+      {
+        "name": "Home Space",
+        "panes": [
+          {
+            "name": "root",
+            "is_vertical": false,
+            "commands": ["cd $HOME", "system_info"],
+            "is_focus": true
+          },
+          {
+            "name": "developer",
+            "is_vertical": true,
+            "commands": ["cd $HOME/developer && clear"]
+          },
+          {
+            "name": "projects",
+            "is_vertical": false,
+            "commands": ["cd $HOME/developer/projects && clear"]
+          }
+        ]
+      },
+      {
+        "name": "Project Space",
+        "panes": [
+          {
+            "name": "git",
+            "is_vertical": false,
+            "commands": ["cd $HOME/developer/projects && clear"]
+          },
+          {
+            "name": "project_root",
+            "is_vertical": true,
+            "commands": ["cd $HOME/developer/projects && clear"]
+          }
+        ]
+      },
+      {
+        "name": "Work Space",
+        "panes": [
+          {
+            "name": "WS_1",
+            "is_vertical": false,
+            "commands": ["cd $HOME/developer/projects && clear"]
+          },
+          {
+            "name": "WS_2",
+            "is_vertical": false,
+            "commands": ["cd $HOME/developer/projects && clear"]
+          },
+          {
+            "name": "WS_3",
+            "is_vertical": true,
+            "commands": ["cd $HOME/developer/projects && clear"]
+          },
+          {
+            "name": "WS_4",
+            "is_vertical": true,
+            "commands": ["cd $HOME/developer/projects && clear"]
+          }
+        ]
+      }
+    ]
+  }
+}
