@@ -26,46 +26,45 @@ async def main(connection):
 
     # Fetch the “current terminal window” from the app (returns None if there is no current window)
     window = app.current_terminal_window
+    if not window:
+        window = await iterm2.Window.async_create(connection)
+        # You can view this message in the script console.
+        print("No current window. So created a new window")
 
     window_config = get_window_config()["window"]
 
-    if window is not None:
-        await window.async_set_title(window_config["name"])
+    await window.async_set_title(window_config["name"])
 
-        tab = None
-        for tab_config in window_config["tabs"]:
-            if not tab:
-                tab = window.current_tab
+    tab = None
+    for tab_config in window_config["tabs"]:
+        if not tab:
+            tab = window.current_tab
+        else:
+            tab = await window.async_create_tab()
+
+        await tab.async_set_title(tab_config["name"])
+
+        pane = None
+        for pane_index, pane_config in enumerate(tab_config["panes"]):
+            if not pane:
+                pane = tab.current_session
+            elif pane_index == 3:
+                pane = await tab_config["panes"][0]["pane_object"].async_split_pane(vertical=pane_config["is_vertical"])
             else:
-                tab = await window.async_create_tab()
+                pane = await pane.async_split_pane(vertical=pane_config["is_vertical"])
 
-            await tab.async_set_title(tab_config["name"])
+            if pane_config.get("is_focus"):
+                focus_pane_object = pane
 
-            pane = None
-            for pane_index, pane_config in enumerate(tab_config["panes"]):
-                if not pane:
-                    pane = tab.current_session
-                elif pane_index == 3:
-                    pane = await tab_config["panes"][0]["pane_object"].async_split_pane(vertical=pane_config["is_vertical"])
-                else:
-                    pane = await pane.async_split_pane(vertical=pane_config["is_vertical"])
+            if len(tab_config["panes"]) == 4:
+                pane_config["pane_object"] = pane
 
-                if pane_config.get("is_focus"):
-                    focus_pane_object = pane
+            for command in pane_config["commands"]:
+                await pane.async_send_text(command + "\n")
 
-                if len(tab_config["panes"]) == 4:
-                    pane_config["pane_object"] = pane
+            await pane.async_set_name(pane_config["name"])
 
-                for command in pane_config["commands"]:
-                    await pane.async_send_text(command + "\n")
-
-                await pane.async_set_name(pane_config["name"])
-
-        await focus_pane_object.async_activate(select_tab=True, order_window_front=True)
-
-    else:
-        # You can view this message in the script console.
-        print("No current window")
+    await focus_pane_object.async_activate(select_tab=True, order_window_front=True)
 
 
 # Make a connection to iTerm2 and invoke the main function in an asyncio event loop.
