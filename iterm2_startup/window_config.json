@@ -37,29 +37,14 @@
             "is_focus": true
           },
           {
-            "name": "developer",
+            "name": "developer_projects",
             "is_vertical": true,
-            "commands": ["cd $HOME/developer && clear"]
-          },
-          {
-            "name": "projects",
-            "is_vertical": false,
-            "commands": ["cd $HOME/developer/projects && clear"]
-          }
-        ]
-      },
-      {
-        "name": "Project Space",
-        "panes": [
-          {
-            "name": "git",
-            "is_vertical": false,
             "commands": ["cd $HOME/developer/projects && clear"]
           },
           {
-            "name": "project_root",
-            "is_vertical": true,
-            "commands": ["cd $HOME/developer/projects && clear"]
+            "name": "company_projects",
+            "is_vertical": false,
+            "commands": ["cd $HOME/company/projects && clear"]
           }
         ]
       },
@@ -67,22 +52,37 @@
         "name": "Work Space",
         "panes": [
           {
-            "name": "WS_1",
+            "name": "company",
             "is_vertical": false,
-            "commands": ["cd $HOME/developer/projects && clear"]
+            "commands": ["cd $HOME/company && clear"]
           },
           {
-            "name": "WS_2",
-            "is_vertical": false,
-            "commands": ["cd $HOME/developer/projects && clear"]
-          },
-          {
-            "name": "WS_3",
+            "name": "developer",
             "is_vertical": true,
+            "commands": ["cd $HOME/developer && clear"]
+          }
+        ]
+      },
+      {
+        "name": "Project Space",
+        "panes": [
+          {
+            "name": "developer_projects_1",
+            "is_vertical": false,
             "commands": ["cd $HOME/developer/projects && clear"]
           },
           {
-            "name": "WS_4",
+            "name": "company_projects_1",
+            "is_vertical": false,
+            "commands": ["cd $HOME/company/projects && clear"]
+          },
+          {
+            "name": "company_projects_2",
+            "is_vertical": true,
+            "commands": ["cd $HOME/company/projects && clear"]
+          },
+          {
+            "name": "developer_projects_2",
             "is_vertical": true,
             "commands": ["cd $HOME/developer/projects && clear"]
           }
